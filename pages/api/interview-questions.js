@@ -50,5 +50,5 @@ export default async function (req, res) {
 }
 
 function generatePrompt(technology) {      
-  return `5 ${technology} interview questions with answers`;
+  return `Suggest 3 ${technology} interview questions with answers`;
 }
