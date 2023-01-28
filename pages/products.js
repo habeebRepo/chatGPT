@@ -6,6 +6,7 @@ export default function Home() {
   const [priceMin, setPriceMin] = useState(25);
   const [priceMax, setPriceMax] = useState(100);
   const [product, setProduct] = useState("");
+  const [currency, setCurrency] = useState("");
   const [result, setResult] = useState();
 
   const[loading,setLoading] = useState(false);
@@ -23,7 +24,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ priceMin, priceMax, product }),
+        body: JSON.stringify({ priceMin, priceMax, product,currency }),
       });
 
       const data = await response.json();
@@ -84,7 +85,15 @@ export default function Home() {
             onChange={(e) => setPriceMax(Number.parseInt(e.target.value))}
           />
 
-          
+          <label>Currency</label>
+          <input
+            type="text"
+            min={1}
+            name="currencytype"
+            placeholder="Currency Type (USD, INR etc..)"
+            value={currency}
+            onChange={(e) => setCurrency(e.target.value)}
+          />
           <input type="submit" value="Generate Products" />
         </form>
         <div

@@ -14,13 +14,13 @@ export default async function (req, res) {
     });
     return;
   }
-  const {priceMin, priceMax, product} = req.body;
+  const {priceMin, priceMax, product,currency} = req.body;
   
 
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(priceMin, priceMax, product),
+      prompt: generatePrompt(priceMin, priceMax, product,currency),
       temperature: 0.6,
       max_tokens:2048
     });
@@ -41,7 +41,7 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(priceMin, priceMax, product ) {
+function generatePrompt(priceMin, priceMax, product,currency ) {
   console.log(`suggest 5 best ${product} between ${priceMin} and ${priceMax}`);
-  return `suggest 5 best ${product} between ${priceMin} and ${priceMax}.`;
+  return `suggest 5 best ${product} between ${priceMin}${currency} and ${priceMax}${currency}.`;
 }
