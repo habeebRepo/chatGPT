@@ -21,7 +21,7 @@ export default function Home() {
         },
         body: JSON.stringify({ technology: technology }),
       });
-
+      
       const data = await response.json();
       if (response.status !== 200) {
         setLoading(false);
